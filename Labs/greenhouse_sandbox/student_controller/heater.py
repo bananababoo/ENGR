@@ -1,6 +1,6 @@
 """Heater control for the GHU-2 greenhouse (percent power, 0 to 100).
 
-Owner: <name>
+Owner: Oliver
 """
 
 from .helpers import _clamp
@@ -10,6 +10,8 @@ k_i = 0.01
 k_w = 0.0 # Integral Windup Term
 
 total_error = 0.0
+
+data = []
 
 def control_heater(readings, setpoints, dt, state) -> float:
     """Return the heater power for this tick, a number in [0, 100].
@@ -58,8 +60,9 @@ def control_heater(readings, setpoints, dt, state) -> float:
     saturation_error = output - raw
     
     state["total_error"] = total_error + error * dt + saturation_error * (k_w/k_i) * dt
+    
 
-    if(readings.temperature_c > setpoints.temperature_c * 0.99):
+    if(readings.temperature_c > setpoints.temperature_c * 0.99 ):
         output = 0.0
 
     return output

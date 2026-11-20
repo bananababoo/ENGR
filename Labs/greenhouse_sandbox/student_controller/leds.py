@@ -1,6 +1,6 @@
 """LED control for the GHU-2 greenhouse (percent intensity, 0 to 100).
 
-Owner: <name>
+Owner: Isaac
 """
 
 from .helpers import _clamp
@@ -31,11 +31,7 @@ def control_leds(readings, setpoints, dt, state) -> float:
     float
         LED intensity percent, from 0 to 100.
     """
-    # TODO: Replace this stub with your Milestone 3 LED design.
-    # Your M3 flowchart is the specification. Keep each command in range
-    # before you return it:
-    #   1. At the top of this file, add "from .helpers import _clamp".
-    #   2. Return "_clamp(u, 0.0, 100.0)", where u is your command.
+    
     if(readings.temperature_c > setpoints.temperature_c * 1.1):
         return 0.0
     

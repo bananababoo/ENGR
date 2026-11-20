@@ -1,6 +1,6 @@
 """Pump control for the GHU-2 greenhouse (percent speed, 0 to 100).
 
-Owner: <name>
+Owner: Dallas
 """
 
 
@@ -30,9 +30,9 @@ def control_pump(readings, setpoints, dt: float, state: dict) -> float:
         Pump speed percent, from 0 to 100.
     """
     
-    if(readings.soil_vwc < setpoints.soil_vwc * 0.5):
-        state["pump_status"] = 100.0
-    elif(readings.soil_vwc > setpoints.soil_vwc * 1.5):
+    if(readings.soil_vwc < setpoints.soil_vwc * 0.7):
+        state["pump_status"] = 15.0
+    elif(readings.soil_vwc > setpoints.soil_vwc * 1.0):
         state["pump_status"] = 0.0
     
     return state.get("pump_status", 0.0)
